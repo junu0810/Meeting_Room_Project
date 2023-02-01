@@ -1,1 +1,3 @@
-min test22222222222222222222
+function dev() {
+    const dev = "dev#5번 입니다."
+}
