@@ -1,4 +1,4 @@
-package com.example.meeting.common.Dto;
+package com.example.meeting.common.Jwt.Dto;
 
 import lombok.*;
 
