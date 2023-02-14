@@ -2,18 +2,20 @@ package com.example.meeting.User.controller;
 
 
 import com.example.meeting.User.controller.Dto.MainHomeDto;
-import com.example.meeting.User.service.Dto.UserDto;
+import com.example.meeting.User.controller.Dto.SignInDto;
+import com.example.meeting.User.controller.Dto.UserDto;
 import com.example.meeting.User.service.UserService;
+
+import com.example.meeting.common.Jwt.Dto.TokenDto;
+import com.example.meeting.common.Jwt.JwtProvider;
+import com.example.meeting.common.Jwt.JwtString;
 import com.example.meeting.common.ResponseResult;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.example.meeting.User.domain.User;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+
+    private final JwtProvider jwtProvider;
 
     @PostMapping("/sign")
     public ResponseEntity<ResponseResult<MainHomeDto>> SignIn(){
@@ -37,8 +41,21 @@ public class UserController {
     @Transactional
     @PostMapping("/made")
     public ResponseEntity<ResponseResult<String>> SignUp(@RequestBody UserDto userDto){
-        String savedUserEmail = userService.createUser(userDto);
-        return ResponseEntity.ok().body(new ResponseResult<>(HttpStatus.OK.value() , savedUserEmail));
+        String savedUser = userService.createUser(userDto);
+        return ResponseEntity.ok()
+                .body(new ResponseResult<>(HttpStatus.OK.value() , savedUser));
+   }
+   @PostMapping("/signin")
+    public ResponseEntity<ResponseResult<TokenDto>> getToken(@RequestBody SignInDto signinDto){
+       TokenDto tokenDto = userService.findUser(signinDto.getUser_email() , signinDto.getUser_name());
+       return ResponseEntity.ok()
+               .body(new ResponseResult<>(HttpStatus.OK.value() , tokenDto));
+   }
+
+   @GetMapping("/test")
+   public ResponseEntity<ResponseResult<String>> TestTokenController(@RequestBody SignInDto signInDto){
+       return ResponseEntity.ok()
+               .body(new ResponseResult<>(HttpStatus.OK.value() , "완료"));
    }
 
 }
