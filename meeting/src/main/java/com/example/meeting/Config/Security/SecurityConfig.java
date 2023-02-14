@@ -30,8 +30,6 @@ public class SecurityConfig  {
                 .and()
                 .authorizeRequests()
                 .requestMatchers("/user/made" ).permitAll()
-                .requestMatchers( "/user/signin" ).permitAll()
-                .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
         return http.build();
