@@ -1,20 +1,21 @@
-import { Routes, Route, } from 'react-router-dom'
 import Sidebar from './Sidebar';
 import EvaList from './EvaList'
 import QuestionList from './QuestionList'
 import { useEffect, useState } from 'react';
 import { baseData } from '../../confing';
 import axios from 'axios';
+// import Modal from '../common/Modal';
+import Modal from 'react-modal';
 
 function Interviewer({ classData }) {
 
     const [nowPage, setPage] = useState(baseData.inter);
     const [loading, isLoading] = useState(false);
     const [userData, setData] = useState();
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
-
-    const postData = () => {
-        console.log("데이터 추가")
+    const postData = ( s , thisPage) => {
+        console.log(thisPage)
     }
     
     useEffect(() => {
@@ -60,7 +61,11 @@ function Interviewer({ classData }) {
                 ?
                 <div>
                 <p>평가자 인터뷰 목록</p>
-                <a onClick={(nowPage) => {setData(nowPage)}}> + </a>
+                <a onClick={()=> setModalIsOpen(true)}> + </a>
+                <Modal isOpen={modalIsOpen}>
+                    This is Modal content
+                    <button onClick={()=> setModalIsOpen(false)}>Modal Close</button>
+                </Modal>
                 <Sidebar setPage={setPage} />
                 {
                  nowPage === "eva" ?
