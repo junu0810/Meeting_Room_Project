@@ -8,6 +8,7 @@ class MeetingApplicationTests {
 
 	@Test
 	void contextLoads() {
+		/* Git 정책용 test commit */
 	}
 
 }
