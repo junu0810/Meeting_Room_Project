@@ -1,50 +1,60 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { saveUserInfo } from '../dummy/store';
+import axios from 'axios';
+import { baseData } from '../../confing'
 
-function Login(props) {
+
+function Login({ setNavi , setRole , setClass }) {
 
   // store.js에 저장해 둔 임시 데이터 가져오기
-  let userInfo = useSelector((state) => state.user);
-  let dispath = useDispatch();
+  // let userInfo = useSelector((state) => state.user);
+  // let dispath = useDispatch();
 
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-
+  
+  
   const setChange = (e, targetInfo) => {
 
     const { target: { value } } = e;
-    console.log(value)
     targetInfo === "email" ? setUserEmail(value) : setUserName(value);
 
   }
-
 
   const checkSum = (event) => {
 
     event.preventDefault();
     let userInfo = {};
-    console.log(userEmail.split("@").length);
+
     userEmail.split("@").length !== 2 ? alert("이메일을 확인해주세요.") : userInfo["email"] = userEmail;
     userName === "" ? alert("이름을 입력해주세요") : userInfo["name"] = userName;
-
-    //TODO: Server와 통신하는 부분 작성
-
-    checkUSer(userInfo)
-
-
-  }
-
-  // 삭제 예정
-  const checkUSer = (user) => {
-    userInfo.forEach(ele => {
-      if (user.email === ele.email && user.name === ele.name) {
-        dispath(saveUserInfo(ele));
-        localStorage.setItem('userInfo', ele.name)
-        props.navi(ele.role)
-      }
-    });
-  }
+    
+    // axios.post(`${baseData.URL}/user/sigin`, { userInfo })
+    // .then((el) =>{
+    //  // 학생로그인
+    //   if(el.data.role === 1){
+    //     navi(baseData.stu)
+    //     setClass(baseData.stuTest.class)
+    //   }
+    //   // 평가자 로그인
+    //   else if(el.data.role === 2){
+    //     navi(baseData.teach)
+    //     setClass(baseData.stuTest.class)
+    //   }
+    // })
+    // .catch(( e ) =>{
+    //   console.log(e)
+    // })
+    
+    //평가자용 테스트
+    // setNavi(baseData.teach)
+    // setClass(baseData.interTest.data)
+    console.log(baseData.stuTest.data)
+    //학생용 테스트
+    setNavi(baseData.stu)
+    setClass(baseData.stuTest.data)
+    
+  } 
+    
 
   return (
     <div>
