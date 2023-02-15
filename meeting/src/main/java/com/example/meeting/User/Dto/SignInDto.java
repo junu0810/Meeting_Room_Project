@@ -1,4 +1,4 @@
-package com.example.meeting.User.controller.Dto;
+package com.example.meeting.User.Dto;
 
 
 import lombok.*;

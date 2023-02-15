@@ -1,44 +1,47 @@
 package com.example.meeting.User.service;
 
 
-import com.example.meeting.User.controller.Dto.SignInDto;
+import com.example.meeting.User.Dto.SignInDto;
+import com.example.meeting.User.domain.Role;
 import com.example.meeting.User.domain.User;
 import com.example.meeting.User.repository.UserRepository;
-import com.example.meeting.User.controller.Dto.UserDto;
+import com.example.meeting.User.Dto.UserDto;
 import com.example.meeting.common.Jwt.Dto.TokenDto;
 import com.example.meeting.common.Jwt.JwtProvider;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
-    private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final UserRepository userRepository;
 
     private final JwtProvider jwtProvider;
 
     @Transactional
-    public String createUser(UserDto userData) {
+    public String createUser(SignInDto signInDto) {
 
-        User user = userRepository.findUserByUserEmail(userData.getUser_email())
-                .orElseGet(() -> userRepository.save(User.createUser(userData)));
+        User user = userRepository.findUserByUserEmailAndUserName(signInDto.getUser_email() , signInDto.getUser_name())
+                .orElseGet(() -> userRepository.save(User.createUser(
+                        UserDto.builder()
+                                .user_email(signInDto.getUser_email())
+                                .user_name(signInDto.getUser_name())
+                                .role(Role.USER).build()
+                )));
 
         return user.getUserEmail();
     }
 
 
     @Transactional
-    public TokenDto findUser(String userEmail, String username) {
+    public TokenDto invalidProvide(SignInDto signInDto) throws Exception {
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userEmail, username);
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        return jwtProvider.createToken(authentication);
+        User user = userRepository.findUserByUserEmailAndUserName(signInDto.getUser_email() , signInDto.getUser_name())
+                .orElseThrow(() -> new Exception("사용자를 찾을 수 없습니다."));
+
+        return jwtProvider.createToken(user.getUserEmail());
     }
 
 }

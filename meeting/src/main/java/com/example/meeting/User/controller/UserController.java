@@ -1,20 +1,18 @@
 package com.example.meeting.User.controller;
 
 
-import com.example.meeting.User.controller.Dto.MainHomeDto;
-import com.example.meeting.User.controller.Dto.SignInDto;
-import com.example.meeting.User.controller.Dto.UserDto;
+import com.example.meeting.User.Dto.MainHomeDto;
+import com.example.meeting.User.Dto.SignInDto;
+import com.example.meeting.User.Dto.UserDto;
 import com.example.meeting.User.service.UserService;
 
 import com.example.meeting.common.Jwt.Dto.TokenDto;
 import com.example.meeting.common.Jwt.JwtProvider;
-import com.example.meeting.common.Jwt.JwtString;
 import com.example.meeting.common.ResponseResult;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.example.meeting.User.domain.User;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -40,14 +38,16 @@ public class UserController {
 
     @Transactional
     @PostMapping("/made")
-    public ResponseEntity<ResponseResult<String>> SignUp(@RequestBody UserDto userDto){
-        String savedUser = userService.createUser(userDto);
+    public ResponseEntity<ResponseResult<String>> SignUp(@RequestBody SignInDto signInDto){
+        String savedUser = userService.createUser(signInDto);
         return ResponseEntity.ok()
                 .body(new ResponseResult<>(HttpStatus.OK.value() , savedUser));
    }
    @PostMapping("/signin")
-    public ResponseEntity<ResponseResult<TokenDto>> getToken(@RequestBody SignInDto signinDto){
-       TokenDto tokenDto = userService.findUser(signinDto.getUser_email() , signinDto.getUser_name());
+    public ResponseEntity<ResponseResult<TokenDto>> getToken(@RequestBody SignInDto signinDto) throws Exception {
+       TokenDto tokenDto = userService.invalidProvide(signinDto);
+
+
        return ResponseEntity.ok()
                .body(new ResponseResult<>(HttpStatus.OK.value() , tokenDto));
    }
