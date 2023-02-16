@@ -1,9 +1,9 @@
 import React from 'react';
-
+import { useState } from 'react';
 
 function RoomList({ roomList }) {
 
-    const [fileName , setName] =useState("");
+    const [fileName , setFileName] = useState("");
     const fileInput = React.createRef();
 
     const handleButtonClick = (e) => {

@@ -1,9 +1,9 @@
 
 
-function Modal(){
+function PageNav(){
     return (
         <div></div>
     )
 }
 
-export default Modal;
+export default PageNav;
