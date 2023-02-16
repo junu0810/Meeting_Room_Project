@@ -13,9 +13,9 @@ import ModlaDropDown from './modal/ModalDropDown';
 
 function Interviewer() {
 
-    const [nowPage, setPage] = useState(baseData.eva);
-    const [loading, isLoading] = useState(false);
-    const [userData, setData] = useState();
+    const [ nowPage, setPage] = useState(baseData.eva);
+    const [ loading, isLoading] = useState(false);
+    const [ userData, setData] = useState();
 
     const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ modalData, setModalData ] = useState({});
@@ -26,12 +26,10 @@ function Interviewer() {
     const [ viewEnd, setViewEnd ] = useState("");
     const [ StartDate, setStartDate ] = useState();
     const [ EndDate, setEndDate ] = useState();
+    const [ viewDrop, setViewDrop] = useState(false);
 
-    const [viewDrop, setViewDrop] = useState(false);
+    console.log(userData)
 
-    
-    console.log(modalData)
-    console.log(qusData)
     useEffect(() => {
         async function getData() {
             await axios.get(`${baseData.URL}/user/interinfo`, {

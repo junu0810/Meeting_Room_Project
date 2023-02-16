@@ -1,17 +1,16 @@
 
 function ModlaDropDown({queList , setModalData , modalData}) {
 
-    const setDropData = (e) =>{
-        const { target : { outerText }} = e  
-        const data = outerText.split("/")[0]
-        setModalData({...modalData , Question : data})
+    const setDropData = (uuid) => (e) =>{
+        console.log(uuid)
+        setModalData({...modalData , quesDocumnet : uuid})
         
     }
     return(
         <>
         {queList.map((el) => {
             return(
-                <div onClick={setDropData} key={el.uuid} >{el.uuid} / {el.name}</div>
+                <div onClick={setDropData(el.uuid)} key={el.uuid} >{el.name}</div>
             )
         })}
         </>
