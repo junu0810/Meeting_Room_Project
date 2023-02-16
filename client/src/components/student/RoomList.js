@@ -1,61 +1,47 @@
-import { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useState } from 'react';
 
+function RoomList({ roomList }) {
 
-function RoomList( {user} ) {
+    const [fileName , setFileName] = useState("");
+    const fileInput = React.createRef();
 
-    let roomList = useSelector((state => state.room))
-    let roomInfo = roomList.filter(function(a) {
-        return a.targetUser === user
-    })
-    let inputRef = useRef([])
-    let [fileList, setFile] = useState(new Array(roomInfo.length));
-    let [fileName, setFileName] = useState(new Array(roomInfo.length));
-
-    function deleteFile(index) {
-        // 파일 저장
-        let copyFile = [...fileList]
-        copyFile[index] = null
-        setFile(copyFile)
-        // 파일 이름 저장
-        let copyFileName = [...fileName]
-        copyFileName[index] = ''
-        setFileName(copyFileName)
-    }
-
-    function UploadFile(el, index) {
-        // 파일 저장
-        let copyFile = [...fileList]
-        copyFile[index] = el
-        setFile(copyFile)
-        // 파일 이름 저장
-        let copyFileName = [...fileName]
-        copyFileName[index] = el[0].name
-        setFileName(copyFileName)
-    }
-
+    const handleButtonClick = (e) => {
+        fileInput.current.click();
+    };
+      
+    const handleChange = (e) => {
+        // 업로드 후 파일명 출력
+    };
 
     return (
         <div>
             {
-                roomInfo.length === 0
-                ? <p>진행 중인 인터뷰가 없습니다.</p>
-                : roomInfo.map(function(a,i) {
-                    return (
-                        <div key={i} style={{'border':'solid 1px #000'}}>
-                            <p>{a.startTime}</p>
-                            <h4>{a.roomName}</h4>
-                            <button>공유파일 다운로드</button>
-                            <input type="file" ref={(el) => (inputRef.current[i]= el)} onChange={ (e) => { UploadFile(e.target.files, i) } } style={{'display' : 'none'}} />
-                            <p>{fileName[i]}<button onClick={()=>{ deleteFile(i) }}>삭제</button></p>
-                            <button onClick={ () => { inputRef.current[i].click() } }>자료 업로드</button>
-                            <button>시작하기</button>
-                        </div>
-                    )
-                }) 
+                roomList.length === 0
+                    ?
+                    <p>강의가 없습니다.</p>
+                    :
+                    roomList.map(el => {
+                        return (
+                            <div key={el.uuid} style={{ 'border': 'solid 1px #000' }}>
+                                <p>{el.created_at}</p>
+                                <h4>{el.class_name}</h4>
+                                <button>공유파일 다운로드</button>
+                                {/* <input type="file" ref={(el) => (inputRef.current[i]= el)} onChange={ (e) => { UploadFile(e.target.files, i) } } style={{'display' : 'none'}} /> */}
+                                {/* <p>{fileName[i]}<button onClick={()=>{ deleteFile(i) }}>삭제</button></p> */}
+                                {/* <button onClick={ () => { inputRef.current[i].click() } }>자료 업로드</button> */}
+                                {fileName?? <p>{fileName}</p>}
+                                <button onClick={handleButtonClick}>파일 업로드</button>
+                                <input type="file"
+                                    ref={fileInput}
+                                    onChange={handleChange}
+                                    style={{ display: "none" }} />
+                                <button>시작하기</button>
+                            </div>
+                        )
+                    })
             }
 
-        
         </div>
     )
 

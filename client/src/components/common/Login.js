@@ -3,7 +3,7 @@ import axios from 'axios';
 import { baseData } from '../../confing'
 
 
-function Login({ setNavi , setRole , setClass }) {
+function Login({ setNavi }) {
 
   // store.js에 저장해 둔 임시 데이터 가져오기
   // let userInfo = useSelector((state) => state.user);
@@ -28,33 +28,31 @@ function Login({ setNavi , setRole , setClass }) {
     userEmail.split("@").length !== 2 ? alert("이메일을 확인해주세요.") : userInfo["email"] = userEmail;
     userName === "" ? alert("이름을 입력해주세요") : userInfo["name"] = userName;
     
-    // axios.post(`${baseData.URL}/user/sigin`, { userInfo })
-    // .then((el) =>{
-    //  // 학생로그인
-    //   if(el.data.role === 1){
-    //     navi(baseData.stu)
-    //     setClass(baseData.stuTest.class)
-    //   }
-    //   // 평가자 로그인
-    //   else if(el.data.role === 2){
-    //     navi(baseData.teach)
-    //     setClass(baseData.stuTest.class)
-    //   }
-    // })
-    // .catch(( e ) =>{
-    //   console.log(e)
-    // })
-    
-    //평가자용 테스트
-    // setNavi(baseData.teach)
-    // setClass(baseData.interTest.data)
-    console.log(baseData.stuTest.data)
-    //학생용 테스트
-    setNavi(baseData.stu)
-    setClass(baseData.stuTest.data)
+    // TODO : 비밀번호와 이름이 제대로 체크되지 않았는데 로그인 요청이 감
+    getToken(userInfo);
     
   } 
-    
+
+  const getToken = async (sendData) => {
+    await axios.post(`${baseData.URL}/user/sigin`, { sendData })
+    .then((el) =>{
+      const {data : {role , token}} = el
+     // 학생로그인
+      if(role === 1){
+        setNavi(baseData.stu)
+        localStorage.setItem(baseData.token , token)
+      }
+      // 평가자 로그인
+      else if(role === 2){
+        setNavi(baseData.teach)
+        localStorage.getItem(baseData.token , token)
+      }
+    })
+    .catch(( e ) =>{
+      console.log(e)
+    })  
+  }
+     
 
   return (
     <div>
