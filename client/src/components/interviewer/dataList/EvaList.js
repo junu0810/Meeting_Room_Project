@@ -43,7 +43,7 @@ const deleteTarget = (uuid)=>{
                             <button>강의 시작하기</button>
                             {/* TODO :해당함수로 삭제 API 보내기 */}
                             <button>평가 파일 다운로드</button>
-                            <a onClick={() => {deleteTarget()}}>휴지통</a>
+                            <p onClick={() => {deleteTarget()}}>휴지통</p>
                         </div>
                     )
                 })

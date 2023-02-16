@@ -1,5 +1,4 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { useState } from 'react';
 import Student from './components/student/Student';
 import Login from './components/common/Login';
 import Interviewer from './components/interviewer/InterViewer';
@@ -8,7 +7,6 @@ import './App.css';
 function App() {
 
   let navi = useNavigate();
-  const [ classData , setClass ] = useState();
 
   return (
     <div className="App">

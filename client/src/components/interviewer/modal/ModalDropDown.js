@@ -2,9 +2,8 @@
 function ModlaDropDown({queList , setModalData , modalData}) {
 
     const setDropData = (uuid) => (e) =>{
-        console.log(uuid)
+
         setModalData({...modalData , quesDocumnet : uuid})
-        
     }
     return(
         <>

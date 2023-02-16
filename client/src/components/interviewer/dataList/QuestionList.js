@@ -17,7 +17,7 @@ function QuestionList({ queList }) {
                             <h4>{el.class_name}</h4>
                             <button>수정하기</button>
                             <div>평가결과 다운로드</div>
-                            <a>휴지통</a>
+                            <p>휴지통</p>
                         </div>
                     )
                 })

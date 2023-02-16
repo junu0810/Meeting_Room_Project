@@ -26,7 +26,17 @@ export const baseData ={
 
     quesTitle : 'quesTitle' ,
 
-    quesEle : 'quesEle',
+    quesEle : 'quesEle' , 
+
+    queList : 'queList' , 
+
+    roomList : 'roomList' , 
+    
+    queListTotal : 'queListTotal' ,
+
+    roomListTotal : 'roomListTotal'    
+
+
 }
 
 

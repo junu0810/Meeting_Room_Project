@@ -1,12 +1,13 @@
 import Sidebar from './Sidebar';
-import EvaList from './EvaList'
-import QuestionList from './QuestionList'
-import { useContext, useEffect, useState } from 'react';
+import EvaList from './dataList/EvaList'
+import QuestionList from './dataList/QuestionList'
+import { useEffect, useRef, useState } from 'react';
 import { baseData } from '../../confing';
 import axios from 'axios';
 import Modal from 'react-modal';
 import Calendar from 'react-calendar';
 import ModlaDropDown from './modal/ModalDropDown';
+import PageNav from '../common/PageNav';
 
 
 
@@ -28,11 +29,11 @@ function Interviewer() {
     const [ EndDate, setEndDate ] = useState();
     const [ viewDrop, setViewDrop] = useState(false);
 
-    console.log(userData)
+    const [ nowPageNum , setNowPage ] = useState(1);
 
     useEffect(() => {
         async function getData() {
-            await axios.get(`${baseData.URL}/user/interinfo`, {
+            await axios.get(`${baseData.URL}/user/interinfo?page=${nowPageNum}`, {
                 headers: {
                     Authorization: "example-token"
                 }
@@ -47,7 +48,7 @@ function Interviewer() {
                 }))
         }
         getData()
-    }, [nowPage])
+    }, [nowPage , nowPageNum])
 
     useEffect(() => {
 
@@ -126,31 +127,31 @@ function Interviewer() {
                     ?
                     <div>
                         <p>평가자 인터뷰 목록</p>
-                        <a onClick={() => setModalIsOpen(true)}> + </a>
+                        <p onClick={() => setModalIsOpen(true)}> + </p>
                         {
                             nowPage === baseData.eva
                                 ?
                                 <Modal isOpen={modalIsOpen} appElement={document.getElementById('root')}>
                                     <h4>인터뷰 신규등록</h4>
                                     <form onSubmit={postData}>
-                                        <a onClick={() => setModalIsOpen(false)}>X</a>
+                                        <p onClick={() => setModalIsOpen(false)}>X</p>
                                         {/* TODO : 나중에 br태그 다 지워야함 */}
                                         <div>
-                                            <a>인터뷰명</a>
+                                            <p>인터뷰명</p>
                                             <input onChange={(e) => InputModal(e, baseData.eva, baseData.evaName)}>
                                             </input>
                                         </div>
                                         <div>
-                                            <a>인터뷰 대상자</a>
+                                            <p>인터뷰 대상자</p>
                                             <input onChange={(e) => InputModal(e, baseData.eva, baseData.evaTarget)} />
                                         </div>
                                         <div>
-                                            <a onClick={() => setShowStart(!showStart)}>인터뷰 시작 시간</a>
-                                            <a onClick={() => setShowStart(!showStart)}>{viewStart}</a>
+                                            <p onClick={() => setShowStart(!showStart)}>인터뷰 시작 시간</p>
+                                            <p onClick={() => setShowStart(!showStart)}>{viewStart}</p>
                                             {showStart ? <Calendar onChange={(e) => setChangeDate(e, baseData.evaStart)} /> : <></>}
                                         </div>
-                                        <div><a onClick={() => setShowEnd(!showEnd)}>인터뷰 종료 시간</a>
-                                            <a onClick={() => setShowEnd(!showEnd)}>{viewEnd}</a>
+                                        <div><p onClick={() => setShowEnd(!showEnd)}>인터뷰 종료 시간</p>
+                                            <p onClick={() => setShowEnd(!showEnd)}>{viewEnd}</p>
                                             {showEnd ?
                                                 <Calendar onChange={(e) => setChangeDate(e, baseData.evaEnd)} /> : <></>}
                                         </div>
@@ -193,18 +194,20 @@ function Interviewer() {
                                         <button type="submit">저장하기</button>
                                         </form>
                                     </div>
-                                    <a onClick={() => setModalIsOpen(false)}>X</a>
+                                    <p onClick={() => setModalIsOpen(false)}>X</p>
                                 </Modal>
                         }
                         <Sidebar setPage={setPage} />
                         {
                             nowPage === "eva" ?
                                 <div>
-                                    <EvaList evaList={userData.roomList} />
+                                    <EvaList evaList={userData[baseData.roomList]} />
+                                    <PageNav setNowPage={setNowPage} dataTotal={userData[baseData.roomListTotal]}/>
                                 </div>
                                 :
                                 <div>
-                                    <QuestionList queList={userData.queList} />
+                                    <QuestionList queList={userData[baseData.queList]} />
+                                    <PageNav setNowPage={setNowPage} dataTotal={userData[baseData.queListTotal]}/>
                                 </div>
                         }
                     </div>
