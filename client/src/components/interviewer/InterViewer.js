@@ -150,7 +150,7 @@ function Interviewer() {
 
         return [year, month, day].join(delimiter);
     }
-    console.log(modalData)
+
     return (
 
         <div className='interviewer-wrapper'>
