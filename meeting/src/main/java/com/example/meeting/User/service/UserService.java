@@ -8,10 +8,12 @@ import com.example.meeting.User.repository.UserRepository;
 import com.example.meeting.User.Dto.UserDto;
 import com.example.meeting.common.Jwt.Dto.TokenDto;
 import com.example.meeting.common.Jwt.JwtProvider;
+import com.example.meeting.common.Jwt.JwtString;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @RequiredArgsConstructor
 @Service
@@ -44,4 +46,14 @@ public class UserService {
         return jwtProvider.createToken(user.getUserEmail());
     }
 
+    public String findUser(String token) throws  Exception{
+        return jwtProvider.getUserEmail(token);
+    }
+
+    public String resolveToken(String bearerToken) {
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer")) {
+            return bearerToken.substring(7);
+        }
+        return null;
+    }
 }

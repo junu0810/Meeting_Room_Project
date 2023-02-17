@@ -18,13 +18,13 @@ public class JwtFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String token = resolveToken((HttpServletRequest) request);
-        if(!jwtProvider.validateToken(token)) {
-            throw new RuntimeException("토큰이 유효하지 않습니다.");
-        }
+//        if(!jwtProvider.validateToken(token)) {
+//            throw new RuntimeException("토큰이 유효하지 않습니다.");
+//        }
         chain.doFilter(request, response);
     }
     private String resolveToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
+        String bearerToken = request.getHeader(JwtString.HEADER_STRING);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer")) {
             return bearerToken.substring(7);
         }
