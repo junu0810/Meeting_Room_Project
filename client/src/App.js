@@ -2,7 +2,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import Student from './components/student/Student';
 import Login from './components/common/Login';
 import Interviewer from './components/interviewer/InterViewer';
-import './App.css';
+import './components/style.css/common/App.css';
 
 function App() {
 

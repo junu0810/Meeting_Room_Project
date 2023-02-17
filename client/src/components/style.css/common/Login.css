@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+/* 0. 전체를 감사는 영역 : 배경화면 */
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: #F8FAFB;
+    overflow: hidden;
+}
+
+/* 1. 로그인 전체 감싸는 영역 */
+.login-form-wrap {
+    min-width: 75rem;
+    max-width: 75rem;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 로그인 배경 및 컨텐츠 요소의 박스 영역 */
+.login-form {
+    background-color: #FFFFFF;
+    padding: 3.75rem;
+    border-radius: 0.625rem;
+    border: 0.063rem solid #CED3D6;
+    box-sizing: border-box;
+}
+
+/* 로그인 heading 구간 */
+.login-heading {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2.5rem;
+}
+
+.login-heading__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.125rem;
+    margin-bottom: 1.875rem;
+}
+
+.login-heading__logo svg {
+    height: 100%;
+}
+
+.login-heading .login-heading__info {
+    font-size: 1rem;
+    cursor: default;
+    text-align: center;
+}
+
+/* 로그인 content 구간 */
+.login-content {
+    width: 25.75rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-content__name,
+.login-content__email {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 1.875rem;
+}
+
+.login-content__name {
+    margin-bottom: 1.25rem;
+}
+
+.login-content__email {
+    margin-bottom: 1.875rem;
+}
+
+.login-content__name label,
+.login-content__email label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.625rem;
+    cursor: default;
+}
+
+.login-name-input,
+.login-email-input {
+    width: 100%;
+    padding: 1rem 0.938rem;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #CED3D6;
+    transition: 0.2s;
+}
+
+.login-name-input:focus,
+.login-email-input:focus {
+    border: 1px solid #0061FC;
+}
+
+
+.login-content__name span,
+.login-content__email span {
+    display: none;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: #FF5D5D;
+    cursor: default;
+}
+
+.login-content__name span::before,
+.login-content__email span::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 600;
+    content: "\f071";
+    margin-right: 3px;
+}
+
+.login-active-button {
+    width: 100%;
+    padding: 1rem 0.938rem;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #005AEB;
+    background-color: #0061FC;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.login-active-button:hover {
+    background-color: #005AEB;
+}

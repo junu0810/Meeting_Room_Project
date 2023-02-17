@@ -1,0 +1,192 @@
+@charset "utf-8";
+
+/* 2-2. 페이지의 content list */
+.page-content__list {
+    width: 100%;
+    min-height: 27rem;
+    max-height: 98rem;
+    margin: 1.875rem 0;
+    position: relative;
+}
+
+.no-session-list {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.no-session-list p {
+    color: #878D91;
+}
+
+.content-session-list {
+    width: 100%;
+    height: auto;
+}
+
+.start-session-list-form {
+    width: 100%;
+    background-color: #fff;
+    border: 0.063rem solid #CED3D6;
+    border-radius: 0.625rem;
+    padding: 1.25rem 1.875rem;
+    margin-bottom: 0.625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.session-list-left {
+    width: 50%;
+    height: 100%;
+}
+
+.start-time {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #878D91;
+    margin-bottom: 0.625rem;
+}
+
+.room-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #282828;
+    margin-bottom: 1.25rem;
+}
+
+.download-button {
+    font-size: 0.875rem;
+    color: #878D91;
+    background-color: #fff;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.download-button:after {
+    font-family: 'Font Awesome 6 Free';
+    content: '\f019';
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-left: 0.375rem;
+}
+
+.download-button:hover {
+    color: #282828;
+}
+
+.session-list-right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.file-preview {
+    max-width: 15rem;
+    padding: 0.375rem 0.75rem;
+    background-color: #F8FAFB;
+    border: 0.063rem solid #CED3D6;
+    border-radius: 0.313rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-preview p {
+    max-width: 9.375rem;
+    font-size: 0.688rem;
+    font-weight: 400;
+    color: #878D91;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-preview button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin-left: 0.625rem;
+    color: #878D91;
+    cursor: pointer;
+    font-size: 0.688rem;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 600;
+}
+
+.upload-button {
+    padding: 0.938rem 1.5rem;
+    box-sizing: border-box;
+    border: none;
+    background-color: #282828;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: 0.75rem;
+    cursor: pointer;
+    border-radius: 0.313rem;
+}
+
+.upload-button:hover {
+    color: #CED3D6;
+}
+
+.upload-button::after {
+    font-family: 'Font Awesome 6 Free';
+    content: '\f093';
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-left: 0.375rem;
+
+}
+
+.start-button {
+    padding: 0.938rem 1.5rem;
+    box-sizing: border-box;
+    border: 0.063rem solid #005AEB;
+    background-color: #0061FC;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: 0.75rem;
+    border-radius: 0.313rem;
+    cursor: pointer;
+}
+
+.start-button:hover {
+    background-color: #005AEB;
+}
+
+.end-session-list-form {
+    width: 100%;
+    background-color: #F8FAFB;
+    border: 0.063rem solid #CED3D6;
+    border-radius: 0.625rem;
+    padding: 1.25rem 1.875rem;
+    margin-bottom: 0.625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.room-name.end {
+    color: #878D91;
+}
+
+.session-list-right p {
+    color: #878D91;
+}
+
+.download-button.end {
+    background-color: #F8FAFB;
+}
