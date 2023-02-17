@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
 import RoomList from './RoomList';
 import axios from 'axios';
+import PageNav from '../common/PageNav';
 import { baseData } from '../../confing';
 
 function Student() {
 
     const [userData, setData] = useState();
     const [loading, isLoading] = useState(false);
+    const [ nowPageNum , setNowPage ] = useState(1);
+
+
     const header = localStorage.getItem("token");
 
     useEffect(() => {
         async function getData() {
-            await axios.get(`${baseData.URL}/user/stuinfo`, {
+            await axios.get(`${baseData.URL}/user/stuinfo?page=${nowPageNum}`, {
                 headers: {
                     Authorization: "example-token"
                 }
@@ -27,7 +31,7 @@ function Student() {
         }
         getData()
 
-    }, [])
+    }, [ nowPageNum ])
 
     return (
         <div>
@@ -41,6 +45,10 @@ function Student() {
                     </div>
                     <div>
                         <RoomList roomList={userData.roomList} />
+                        <PageNav setNowPage={setNowPage}
+                                 dataTotal={userData[baseData.roomListTotal]}
+                                 onePageNum={5}     
+                        />
                     </div>
                 </div>
                 :

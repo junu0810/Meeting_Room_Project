@@ -202,12 +202,18 @@ function Interviewer() {
                             nowPage === "eva" ?
                                 <div>
                                     <EvaList evaList={userData[baseData.roomList]} />
-                                    <PageNav setNowPage={setNowPage} dataTotal={userData[baseData.roomListTotal]}/>
+                                    <PageNav setNowPage={setNowPage}
+                                             dataTotal={userData[baseData.roomListTotal]}
+                                             onePageNum={10}     
+                                    />
                                 </div>
                                 :
                                 <div>
                                     <QuestionList queList={userData[baseData.queList]} />
-                                    <PageNav setNowPage={setNowPage} dataTotal={userData[baseData.queListTotal]}/>
+                                    <PageNav setNowPage={setNowPage} 
+                                             dataTotal={userData[baseData.queListTotal]}
+                                             onePageNum={9}
+                                    />
                                 </div>
                         }
                     </div>
