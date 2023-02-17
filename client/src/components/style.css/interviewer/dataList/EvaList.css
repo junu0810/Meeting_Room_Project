@@ -1,0 +1,295 @@
+@charset "utf-8";
+
+/* 2-2. 페이지 contents 영역 */
+.page-content__list {
+    width: 59.875rem;
+    height: auto;
+    position: relative;
+}
+
+
+/* 2-2 a. 인터뷰 리스트 영역 */
+.page-content__interview {
+    /* display: none; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+.interview-heading,
+.question-heading {
+    width: 100%;
+    height: auto;
+    padding: 1.25rem 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid #CED3D6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.interview-heading h4,
+.question-heading h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.interview-heading button,
+.question-heading button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: #0061FC;
+    border: 1px solid #005AEB;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Font Awesome 6 Free';
+    font-size: 1rem;
+    color: #fff;
+    transition: 0.1s;
+}
+
+.interview-heading button:hover,
+.question-heading button:hover {
+    background-color: #005AEB;
+}
+
+.page-content__interview-list,
+.question-content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.filter-button,
+.filter-menu {
+    width: 100%;
+    height: auto;
+    padding: 1.25rem 0 1.25rem 0;
+    box-sizing: border-box;
+}
+
+.filter-button button {
+    padding: 0 0.625rem;
+    margin-right: 0.625rem;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.filter-button button:first-child {
+    padding-left: 0;
+}
+
+.filter-button button:hover,
+.filter-button button:checked,
+.filter-button button:focus {
+    color: #0061FC;
+    font-weight: 600;
+}
+
+.interview-list-area {
+    width: 100%;
+    height: auto;
+}
+
+.before-session-list-form,
+.ongoing-session-list-form {
+    width: 100%;
+    background-color: #fff;
+    border: 0.063rem solid #CED3D6;
+    border-radius: 0.625rem;
+    padding: 1.25rem 1.875rem;
+    margin-bottom: 0.625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.session-list-left {
+    width: 50%;
+    height: 100%;
+}
+
+.status-text {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #282828;
+    margin-bottom: 0.625rem;
+    font-size: 0.875rem;
+}
+
+.start-time {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #878D91;
+    margin-bottom: 0.625rem;
+}
+
+.room-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #282828;
+}
+
+.session-list-right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: end;
+    flex-direction: column;
+}
+
+.right-top {
+    height: auto;
+    margin-bottom: 1.25rem;
+}
+
+.delete-button {
+    padding: 0.313rem;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    font-family: 'Font Awesome 6 Free';
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.125rem;
+    transition: 0.1s;
+}
+
+.before-download-button,
+.ongoing-download-button,
+.after-start-button {
+    padding: 0.938rem 1.5rem;
+    box-sizing: border-box;
+    border: 1px solid #CED3D6;
+    background-color: #F8FAFB;
+    outline: none;
+    color: #CED3D6;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: 0.75rem;
+    cursor: pointer;
+    border-radius: 0.313rem;
+}
+
+.before-download-button::after,
+.ongoing-download-button::after,
+.after-download-button::after {
+    font-family: 'Font Awesome 6 Free';
+    content: '\f019';
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-left: 0.375rem;
+}
+
+.start-button {
+    padding: 0.938rem 1.5rem;
+    box-sizing: border-box;
+    border: 0.063rem solid #005AEB;
+    background-color: #0061FC;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: 0.75rem;
+    border-radius: 0.313rem;
+    cursor: pointer;
+}
+
+.start-button:hover {
+    background-color: #005AEB;
+}
+
+.after-session-list-form {
+    width: 100%;
+    background-color: #F8FAFB;
+    border: 0.063rem solid #CED3D6;
+    border-radius: 0.625rem;
+    padding: 1.25rem 1.875rem;
+    margin-bottom: 0.625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.after-session-list-form .status-text {
+    color: #878D91;
+    border: 1px solid #878D91;
+}
+
+.after-session-list-form .start-time,
+.after-session-list-form .room-name,
+.after-session-list-form .delete-button {
+    color: #878D91;
+}
+
+
+.after-download-button {
+    padding: 0.938rem 1.5rem;
+    box-sizing: border-box;
+    border: none;
+    background-color: #282828;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: 0.75rem;
+    cursor: pointer;
+    border-radius: 0.313rem;
+}
+
+.after-download-button:hover {
+    color: #CED3D6;
+}
+
+
+
+
+/* loading 구간 */
+.loading {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #F8FAFB;
+    border-radius: 50%;
+    border-top: 8px solid #282828;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

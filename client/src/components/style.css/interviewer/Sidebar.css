@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+/* 2-1. 페이지 사이드 메뉴 */
+.page-content__side-menu {
+    width: 15.125rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.side-menu-heading {
+    width: 100%;
+    height: auto;
+    padding: 1.25rem 0;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.interview-list button,
+.question-list button {
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 12px 0;
+    box-sizing: border-box;
+    transition: 0.1s;
+    background-color: #fff;
+    border: none;
+    outline: none;
+}
+
+.interview-list button:focus,
+.interview-list button:hover,
+.interview-list button:checked {
+    color: #0061FC;
+}
+
+.question-list button:focus,
+.question-list button:hover,
+.question-list button:checked {
+    color: #0061FC;
+}
+
+.interview-list,
+.question-list {
+    width: 100%;
+    transition: 0.1s;
+}
+
+.interview-list button::before {
+    font-family: 'Font Awesome 6 Free';
+    content: '\f2b5';
+    font-weight: 500;
+    font-size: 1rem;
+    margin-right: 0.75rem;
+}
+
+.question-list button::before {
+    font-family: 'Font Awesome 6 Free';
+    content: '\f328';
+    font-weight: 500;
+    font-size: 1rem;
+    margin-right: 1.438rem;
+}

@@ -1,4 +1,4 @@
-
+import '../../style.css/interviewer/dataList/EvaList.css';
 
 function EvaList({ evaList }) {
 
@@ -23,32 +23,48 @@ const deleteTarget = (uuid)=>{
 }
 
 
-    return(
-        <div>
-            <p>전체</p>
-            <p>진행 예정</p>
-            <p>진 행 중</p>
-            <p>진행 완료</p>
+    return (
+    <div className="page-content__interview-list">
+        <div className="filter-button">
+            <button>전체</button>
+            <button>진행 예정</button>
+            <button>진행 중</button>
+            <button>진행 완료</button>
+        </div>
+
+        <ul className="interview-list-area">
             {
                 dataList.length === 0 
                 ?
-                <p>강의가 없습니다.</p>
+                <div className="no-session-list"><p>강의가 없습니다.</p></div>
                 :
                 dataList.map(el =>{
-                    return(
-                        <div key={el.uuid}>
-                            <p>{el.progres}</p>
-                            <p>{el.created_at}</p>
-                            <h4>{el.class_name}</h4>
-                            <button>강의 시작하기</button>
-                            {/* TODO :해당함수로 삭제 API 보내기 */}
-                            <button>평가 파일 다운로드</button>
-                            <p onClick={() => {deleteTarget()}}>휴지통</p>
-                        </div>
+                    return (
+                        // before-session-list구간 -> 추후에 ongoin, after 구간도 추가해야함
+                       <div className="before-session-list-form">
+                            <div className="session-list-left" key={el.uuid}>
+                                <span className="status-text">{el.progres}</span>
+                                <p className="start-time">{el.created_at}</p>
+                                <h4 className="room-name">{el.class_name}</h4>
+                            </div>
+
+                            <div className="session-list-right">
+                                <div className="right-top">
+                                    <button className="delete-button" onClick={() => { deleteTarget() }}></button>
+                                </div>
+                                <div className="right-bottom">
+                                    <button className="start-button">강의 시작하기</button>
+                                    {/* TODO :해당함수로 삭제 API 보내기 */}
+                                        <button className="before-download-button">평가 파일 다운로드</button>
+                                </div>    
+                                
+                            </div>
+                        </div>      
                     )
                 })
             }
-        </div>
+        </ul>
+    </div>
     )
 }
 

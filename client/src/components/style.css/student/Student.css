@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+/* 0. 전체적으로 감싸는 요소 -> 최대 너비값 고정*/
+.student-wrapper {
+    min-width: 75rem;
+    max-width: 75rem;
+    height: auto;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+/* 1. 페이지의 heading*/
+.page-heading {
+    width: 100%;
+    height: auto;
+    padding: 0.938rem 0;
+}
+
+.page-heading a {
+    width: 6.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #282828;
+}
+
+.page-heading svg {
+    width: 100%;
+}
+
+/* 2. 페이지의 content */
+.page-content-wrap {
+    width: 100%;
+    height: auto;
+}
+
+/* 2-1. 페이지의 content heading */
+.page-content__heading {
+    width: 100%;
+    height: auto;
+    padding-bottom: 1.25rem;
+    box-sizing: border-box;
+    border-bottom: 0.063rem solid #CED3D6;
+    background-color: #fff;
+    margin-top: 1.875rem;
+}
+
+.page-content__heading h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    color: #282828;
+}
+
+.page-content__heading h5 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #282828;
+}
+
+/* 2-2. 페이지의 content list */
+.page-content__list {
+    width: 100%;
+    min-height: 27rem;
+    max-height: 98rem;
+    margin: 1.875rem 0;
+    position: relative;
+}
+
+
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #F8FAFB;
+    border-radius: 50%;
+    border-top: 8px solid #282828;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

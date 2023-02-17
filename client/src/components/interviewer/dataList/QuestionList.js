@@ -16,7 +16,6 @@ function QuestionList({ queList }) {
                             <p>{el.created_at}</p>
                             <h4>{el.class_name}</h4>
                             <button>수정하기</button>
-                            <div>평가결과 다운로드</div>
                             <p>휴지통</p>
                         </div>
                     )
