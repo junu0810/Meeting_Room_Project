@@ -1,17 +1,26 @@
+import Select from 'react-select';
+
 
 function ModlaDropDown({queList , setModalData , modalData}) {
 
-    const setDropData = (uuid) => (e) =>{
-
-        setModalData({...modalData , quesDocumnet : uuid})
+    const setDropData =  (e) =>{        
+        setModalData({...modalData , quesDocumnet : e.target.value})
     }
+
+    console.log(queList)
     return(
         <>
-        {queList.map((el) => {
-            return(
-                <div onClick={setDropData(el.uuid)} key={el.uuid} >{el.name}</div>
-            )
-        })}
+        <select onChange={(value) => setDropData(value)} >
+            {
+                queList.map((el) => {
+                   return(
+                        <option value={el.uuid} key={el.uuid} >
+                            {el.name}
+                        </option>
+                   )
+                })
+            }
+        </select>
         </>
     )
 }

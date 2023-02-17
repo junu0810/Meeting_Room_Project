@@ -34,9 +34,19 @@ export const baseData ={
     
     queListTotal : 'queListTotal' ,
 
-    roomListTotal : 'roomListTotal'    
+    roomListTotal : 'roomListTotal' ,
 
+    startHour : 'startHour' , 
 
+    startMin : 'startMin' , 
+
+    endHour : 'endHour' , 
+    
+    endMin : 'endMin' ,
+
+    hourArray :  ["00시","01시", "02시", "03시", "04시", "05시", "06시", "07시", "08시", "09시", "10시", "11시", "12시" , "13", "14", "15", "16", "17", "18", "19", "20", "21","22", "23" ] , 
+
+    minArray : [ "00분", "10시분" , "20분" ,"30분"  ,"40분" , "50분"]
 }
 
 

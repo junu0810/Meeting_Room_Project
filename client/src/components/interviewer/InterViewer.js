@@ -28,9 +28,15 @@ function Interviewer() {
     const [ viewEnd, setViewEnd ] = useState("");
     const [ StartDate, setStartDate ] = useState();
     const [ EndDate, setEndDate ] = useState();
-    const [ viewDrop, setViewDrop] = useState(false);
 
     const [ nowPageNum , setNowPage ] = useState(1);
+
+    const getTime = useRef({
+        startHour: '',
+        startMin : '',
+        endHour : '',
+        endMin : ''
+    })
 
     useEffect(() => {
         async function getData() {
@@ -57,7 +63,11 @@ function Interviewer() {
 
     const postData = ( e , thisPage) => {
         e.preventDefault();
-        setModalData({queList: qusData})
+        setModalData({...modalData, queList: qusData})
+        console.log(getTime.current)
+        const startTime = `${getTime.current.startHour} : ${getTime.current.startMin}`
+        const endTime = `${getTime.current.endHour} : ${getTime.current.endMin}`
+        setModalData({...modalData, starTime : startTime , endTime : endTime})
         console.log(modalData)
         console.log(nowPage)
         // axios로 데이터 보내고 정상처리시 setModalIsOpen(!modalIsOpen) 하기
@@ -81,6 +91,26 @@ function Interviewer() {
             }
         }
     }
+
+    const setTime = (value , type) => {
+        switch(type){
+            case(baseData.startHour):
+            getTime.current[baseData.startHour] = value
+            break
+
+            case(baseData.startMin):
+            getTime.current[baseData.startMin] = value
+            break
+
+            case(baseData.endHour):
+            getTime.current[baseData.endHour] = value
+            break
+
+            case(baseData.endMin):
+            getTime.current[baseData.endMin] = value
+            break
+        }
+    } 
 
     const changeQuesEle = (ind) => (e) =>{
         const {target : {value}} = e;
@@ -120,7 +150,7 @@ function Interviewer() {
 
         return [year, month, day].join(delimiter);
     }
-
+    console.log(modalData)
     return (
 
         <div className='interviewer-wrapper'>
@@ -179,18 +209,50 @@ function Interviewer() {
                                                     <p onClick={() => setShowStart(!showStart)}>인터뷰 시작 시간</p>
                                                     <p onClick={() => setShowStart(!showStart)}>{viewStart}</p>
                                                     {showStart ? <Calendar onChange={(e) => setChangeDate(e, baseData.evaStart)} /> : <></>}
+                                                    <select onChange={(value) =>setTime(value.target.value , baseData.startHour)} >
+                                                {baseData.hourArray.map((el,ind) => {
+                                                    return(
+                                                            <option value={el} key={ind} >
+                                                                {el}
+                                                            </option>
+                                                    )
+                                                })}
+                                            </select>
+                                            <select onChange={(value) => setTime(value.target.value , baseData.startMin)} >
+                                                {baseData.minArray.map((el,ind) => {
+                                                    return(
+                                                            <option value={el} key={ind} >
+                                                                {el}
+                                                            </option>
+                                                    )
+                                                })}
+                                            </select>
                                                 </div>
                                                 <div><p onClick={() => setShowEnd(!showEnd)}>인터뷰 종료 시간</p>
                                                     <p onClick={() => setShowEnd(!showEnd)}>{viewEnd}</p>
                                                     {showEnd ?
                                                         <Calendar onChange={(e) => setChangeDate(e, baseData.evaEnd)} /> : <></>}
+                                                     <select onChange={(value) =>setTime(value.target.value , baseData.endHour)} >
+                                                {baseData.hourArray.map((el,ind) => {
+                                                    return(
+                                                            <option value={el} key={ind} >
+                                                                {el}
+                                                            </option>
+                                                    )
+                                                })}
+                                            </select>
+                                            <select onChange={(value) => setTime(value.target.value , baseData.endMin)} >
+                                                {baseData.minArray.map((el,ind) => {
+                                                    return(
+                                                            <option value={el} key={ind} >
+                                                                {el}
+                                                            </option>
+                                                    )
+                                                })}
+                                            </select>   
                                                 </div>
                                                 <div >인터뷰 질문지</div>
-                                                {viewDrop ?
-                                                    <p onClick={() => setViewDrop(!viewDrop)}>^</p> : <p onClick={() => setViewDrop(!viewDrop)}>⌄</p>}
-                                                {viewDrop &&
-                                                    <ModlaDropDown modalData={modalData} setModalData={setModalData} queList={userData.queList} />
-                                                }
+                                               <ModlaDropDown modalData={modalData} setModalData={setModalData} queList={userData.queList} />
                                                 <button type="submit">저장하기</button>
                                             </form>
                                         </Modal>
@@ -253,7 +315,6 @@ function Interviewer() {
                 </div>
            
             </div>
-            
         </div>
     )
 }

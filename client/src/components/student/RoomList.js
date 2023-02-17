@@ -16,6 +16,7 @@ function RoomList({ roomList }) {
         // 업로드 후 파일명 출력
     };
 
+    console.log(roomList)
     return (
         <div className='page-content__list'>
             {
@@ -25,20 +26,19 @@ function RoomList({ roomList }) {
                     :
                     roomList.map(el => {
                         return (
-                            <div className='content-session-list'>
+                             <div className='content-session-list'>
                                 <div className='start-session-list-form' key={el.uuid}>
 
                                     <div className='session-list-left'>
                                         <p className='start-time'>{el.created_at}</p>
                                         <h4 className='room-name'>{el.class_name}</h4>
-                                        <button className='download-button'>공유 파일 다운로드</button>
-                                    </div>
-
-                                    {/* <input type="file" ref={(el) => (inputRef.current[i]= el)} onChange={ (e) => { UploadFile(e.target.files, i) } } style={{'display' : 'none'}} /> */}
-                                    {/* <p>{fileName[i]}<button onClick={()=>{ deleteFile(i) }}>삭제</button></p> */}
-                                    {/* <button onClick={ () => { inputRef.current[i].click() } }>자료 업로드</button> */}
-
-                                    <div className='session-list-right'>
+                              
+                                <button>공유파일 다운로드</button>
+                                </div>
+                            {
+                                el.progress === 0
+                                ? 
+                                <div className='session-list-right'>
                                         {/* 파일 업로드 결과 예시 */}
                                         <div className='file-preview'>
                                             <p>파일 업로드 결과 예시</p>
@@ -52,7 +52,9 @@ function RoomList({ roomList }) {
                                         <label className='upload-button' for="upload-input" onClick={handleButtonClick}>자료업로드</label>
                                         <button className='start-button'>시작하기</button>
                                     </div>
-                                </div>
+                                :
+                                <p>이미 종료된 회의입니다.</p>
+                            }
                             </div>
                         )
                     })

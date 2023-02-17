@@ -23,7 +23,7 @@ function PageNav({ dataTotal , setNowPage , onePageNum  }){
         }
         getchart();
     },[dataTotal , ChartNum ])
-    console.log(page)
+ 
     return (
         <div>
             {
