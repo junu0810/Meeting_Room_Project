@@ -7,7 +7,9 @@ import com.example.meeting.User.Dto.UserDto;
 import com.example.meeting.User.service.UserService;
 
 import com.example.meeting.common.Jwt.Dto.TokenDto;
+import com.example.meeting.common.Jwt.JwtFilter;
 import com.example.meeting.common.Jwt.JwtProvider;
+import com.example.meeting.common.Jwt.JwtString;
 import com.example.meeting.common.ResponseResult;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -53,9 +55,9 @@ public class UserController {
    }
 
    @GetMapping("/test")
-   public ResponseEntity<ResponseResult<String>> TestTokenController(@RequestBody SignInDto signInDto){
+   public ResponseEntity<ResponseResult<String>> TestTokenController(@RequestHeader(JwtString.HEADER_STRING) String userToken) throws Exception {
        return ResponseEntity.ok()
-               .body(new ResponseResult<>(HttpStatus.OK.value() , "완료"));
+               .body(new ResponseResult<>(HttpStatus.OK.value() , userService.findUser(userService.resolveToken(userToken))));
    }
 
 }

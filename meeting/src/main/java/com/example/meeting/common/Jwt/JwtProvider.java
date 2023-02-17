@@ -38,13 +38,13 @@ public class JwtProvider {
                 .build();
     }
 
-    public String getAuthentication(String accessToken) {
-        // 토큰 복호화
-        Claims claims = parseClaims(accessToken);
-
-        if (claims.get("auth") == null) {
-            throw new RuntimeException("권한 정보가 없는 토큰입니다.");
-        }
+//    public String getAuthentication(String accessToken) {
+//        // 토큰 복호화
+//        Claims claims = parseClaims(accessToken);
+//
+//        if (claims.get("auth") == null) {
+//            throw new RuntimeException("권한 정보가 없는 토큰입니다.");
+//        }
         // 클레임에서 권한 정보 가져오기
 //        Collection<? extends GrantedAuthority> authorities =
 //                Arrays.stream(claims.get("auth").toString().split(","))
@@ -54,15 +54,11 @@ public class JwtProvider {
 //        // UserDetails 객체를 만들어서 Authentication 리턴
 //        UserDetails principal = new User(claims.getSubject(), "", authorities);
 //        return new UsernamePasswordAuthenticationToken(principal, "", authorities);
-        return "refresh 토큰 필요";
-    }
+//        return "refresh 토큰 필요";
+//    }
 
-    private Claims parseClaims(String accessToken) {
-        try {
-            return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
-        } catch (ExpiredJwtException e) {
-            return e.getClaims();
-        }
+    public String getUserEmail(String accessToken) {
+            return Jwts.parser().setSigningKey(key).parseClaimsJws(accessToken).getBody().getSubject();
     }
 
     public boolean validateToken(String token) {
